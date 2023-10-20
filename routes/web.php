@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return Redirect::to('urls');
 });
 
 Auth::routes();
@@ -25,5 +25,7 @@ Auth::routes();
 Route::get('/home', function () {
     return Redirect::to('urls');
 })->name('home');
-
-Route::resource('urls', UrlController::class);
+Route::get('urls', [UrlController::class, 'index']);
+Route::resource('urls', UrlController::class)->except([
+    'index'
+])->middleware('auth');
