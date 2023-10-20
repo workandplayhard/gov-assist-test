@@ -1,10 +1,22 @@
+# Summary
+
+## This project is a service platform to convert the long URL into shortened URL
+
+-   I built a custom request for validation.
+-   To shorten the URL, user should be logged in.
+-   But without log in, we can see the shortened URL list.
+-   I Used laravel default auth feature.
+-   I wrote simple unit tests and feature tests to check the creating shortened URL feature.
+-   After creating the shortened URL, I built a simple rest api to get JSON data.
+-   I registered helper functions to generate random strings and constants.
+-   I implemented a schedule to remove the URL if we don't visit it for 30 days.
+
 ### Coding Challenge Guidelines and Recommendations
 
 1. Demonstrate production-level architectural design and code quality.
 2. Demonstrate your knowledge of PHP and Laravel.
 3. Show us you understand git by making logical, incremental check-ins.
 4. Document your solution.
-
 
 ## Brief
 
@@ -14,17 +26,17 @@ The form should be only accessible by logged-in users, meaning the application w
 
 ## Requirements
 
-1. Create a *Url* model with the following properties:
-   
-   1. Id
-   
-   2. destination (string): it will contain the long URL.
-   
-   3. slug (string): it will contain the slug of the shortened URL.
-   
-   4. views: it will contain the times the link has been opened
-   
-   5. Timestamps (created at, updated at)
+1. Create a _Url_ model with the following properties:
+
+    1. Id
+
+    2. destination (string): it will contain the long URL.
+
+    3. slug (string): it will contain the slug of the shortened URL.
+
+    4. views: it will contain the times the link has been opened
+
+    5. Timestamps (created at, updated at)
 
 2. Add a model accessor to the model above to retrieve the full shortened URL as an attribute and make sure this attribute is appended to the model whenever it is retrieved.
 
@@ -50,7 +62,7 @@ The form should be only accessible by logged-in users, meaning the application w
 
 13. Create a scheduled task that deletes links that were not visited for the past 30 days.
 
-14. Update this [README.md](http://README.md "http://README.md") file,  documenting your application (the more detailed the better)
+14. Update this [README.md](http://README.md "http://README.md") file, documenting your application (the more detailed the better)
 
 15. Create a simple POST REST API endpoint that takes “destination” as a required property of the request body. If no “destination” is provided then it should return a validation error. The same is applied when a non-valid URL is provided. Sample of valid payload for the endpoint:
 
