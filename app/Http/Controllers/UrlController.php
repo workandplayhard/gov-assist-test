@@ -11,9 +11,14 @@ class UrlController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $urls = Url::all();
+
+        if ($request->wantsJson()) {
+            return response()->json($urls);
+        }
+
         return view('urls.index', compact('urls'));
     }
 
@@ -31,12 +36,16 @@ class UrlController extends Controller
     public function store(UrlRequest $request)
     {
         $slug = generateRandomString();
-        Url::create(
+        $url = Url::create(
             [
                 'destination' => $request->get('destination'),
                 'slug' => $slug
             ]
         );
+
+        if ($request->wantsJson()) {
+            return response()->json($url);
+        }
 
         return redirect()->route('urls.index');
     }
