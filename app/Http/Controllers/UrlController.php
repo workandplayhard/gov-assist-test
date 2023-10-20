@@ -46,7 +46,10 @@ class UrlController extends Controller
      */
     public function show(Url $url)
     {
-        //
+        $url->views += 1;
+        $url->save();
+
+        return redirect($url->shortened_url);
     }
 
     /**
