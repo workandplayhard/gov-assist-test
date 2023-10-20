@@ -13,5 +13,6 @@ class Url extends Model
 
     protected $fillable = [
         'destination',
+        'slug'
     ];
 }

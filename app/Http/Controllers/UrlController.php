@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UrlRequest;
 use App\Models\Url;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class UrlController extends Controller
      */
     public function index()
     {
-        //
+        $urls = Url::all();
+        return view('urls.index', compact('urls'));
     }
 
     /**
@@ -20,15 +22,23 @@ class UrlController extends Controller
      */
     public function create()
     {
-        //
+        return view('urls.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(UrlRequest $request)
     {
-        //
+        $slug = generateRandomString();
+        Url::create(
+            [
+                'destination' => $request->get('destination'),
+                'slug' => $slug
+            ]
+        );
+
+        return redirect()->route('urls.index');
     }
 
     /**
