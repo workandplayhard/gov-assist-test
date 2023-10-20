@@ -15,4 +15,9 @@ class Url extends Model
         'destination',
         'slug'
     ];
+
+    public function getShortenedUrlAttribute()
+    {
+        return DEFAULT_URL . $this->slug;
+    }
 }
